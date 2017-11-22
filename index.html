@@ -14,24 +14,9 @@
         <meta name="author" content="ConsenSys">
       
       
-        <meta name="lang:clipboard.copy" content="Copy to clipboard">
-      
-        <meta name="lang:clipboard.copied" content="Copied to clipboard">
-      
-        <meta name="lang:search.languages" content="">
-      
-        <meta name="lang:search.result.none" content="No matching documents">
-      
-        <meta name="lang:search.result.one" content="1 matching document">
-      
-        <meta name="lang:search.result.other" content="# matching documents">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
-      
         <link rel="shortcut icon" href="./images/favicon.ico">
       
-      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.12.1">
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.3">
     
     
       
@@ -42,7 +27,7 @@
       <script src="./assets/javascripts/modernizr-e826f8942a.js"></script>
     
     
-      <link rel="stylesheet" href="./assets/stylesheets/application-04ea671600.css">
+      <link rel="stylesheet" href="./assets/stylesheets/application-9011e2d3f8.css">
       
     
     
@@ -115,8 +100,8 @@
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
-          <div class="md-search-result__meta">
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="" data-md-lang-tokenizer="[\s\-]+">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
             Type to start searching
           </div>
           <ol class="md-search-result__list"></ol>
@@ -169,11 +154,11 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="drawer">
-    <span class="md-nav__button md-logo">
+    <div class="md-nav__button md-logo">
       
         <i class="md-icon md-icon--home"></i>
       
-    </span>
+    </div>
     Ethereum Smart Contract Best Practices
   </label>
   
@@ -274,8 +259,8 @@
 
 
   <li class="md-nav__item">
-    <a href="recommendations/" title="Recommendations for Smart Contract Security in Solidity" class="md-nav__link">
-      Recommendations for Smart Contract Security in Solidity
+    <a href="protocol_recommendations/" title="Recommendations for Smart Contract Logic" class="md-nav__link">
+      Recommendations for Smart Contract Logic
     </a>
   </li>
 
@@ -286,8 +271,32 @@
 
 
   <li class="md-nav__item">
-    <a href="known_attacks/" title="Known Attacks" class="md-nav__link">
-      Known Attacks
+    <a href="solidity_recommendations/" title="Recommendations for Secure Solidity Code" class="md-nav__link">
+      Recommendations for Secure Solidity Code
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="protocol_attacks/" title="Protocol Attacks" class="md-nav__link">
+      Protocol Attacks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="solidity_attacks/" title="Solidity Attacks" class="md-nav__link">
+      Solidity Attacks
     </a>
   </li>
 
@@ -371,13 +380,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
     
-    <label class="md-nav__link" for="nav-11">
+    <label class="md-nav__link" for="nav-13">
       About
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-11">
+      <label class="md-nav__title" for="nav-13">
         About
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -481,15 +490,17 @@
 <h2 id="where-to-start">Where to start?<a class="headerlink" href="#where-to-start" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="./general_philosophy">General Philosopy</a> describes the smart contract security mindset</li>
-<li><a href="./recommendations">Solidity Recommendations</a> contains examples of good code patterns</li>
-<li><a href="./known_attacks">Known Attacks</a> describes the different classes of vulnerabilities to avoid</li>
+<li><a href="./protocol_recommendations">Protocol Recommendations</a> contains examples of secure contract logic patterns</li>
+<li><a href="./solidity_recommendations">Solidity Recommendations</a> contains examples of secure Solidity coding patterns</li>
+<li><a href="./protocol_attacks">Protocol Attacks</a> describes the different classes of logical / blockchain vulnerabilities to avoid</li>
+<li><a href="./solidity_attacks">Solidity Attacks</a> describes the different classes of Solidity vulnerabilities to avoid</li>
 <li><a href="./software_engineering">Software Engineering</a> outlines some architectural and design approaches for risk mitigation</li>
-<li><a href="./documentation">Documentation and Procedures</a> outlines best practices for documenting your system for other developers and auditors </li>
+<li><a href="./documentation_procedures">Documentation and Procedures</a> outlines best practices for documenting your system for other developers and auditors</li>
 <li><a href="./security_tools">Security Tools</a> lists tools for improving code quality, and detecting vulnerabilities</li>
 <li><a href="./security_notifications">Security Notifications</a> lists sources of information for staying up to date</li>
 </ul>
 <h2 id="contributions-are-welcome">Contributions are welcome!<a class="headerlink" href="#contributions-are-welcome" title="Permanent link">&para;</a></h2>
-<p>Feel free to submit a pull request, with anything from small fixes, to full new sections. If you are writing new content, please reference the <a href="./about/contributions">contributions</a> page for guidance on style. </p>
+<p>Feel free to submit a pull request, with anything from small fixes, to full new sections. If you are writing new content, please reference the <a href="./about/contributing">contributing</a> page for guidance on style.</p>
 <p>See the <a href="https://github.com/ConsenSys/smart-contract-best-practices/issues">issues</a> for topics that need to be covered or updated. If you have an idea you'd like to discuss, please chat with us in <a href="https://gitter.im/ConsenSys/smart-contract-best-practices">Gitter</a>.</p>
 <p>If you've written an article or blog post, please add it to the <a href="./bibliography">bibliography</a>.  </p>
                 
@@ -547,10 +558,10 @@
       
     </div>
     
-      <script src="./assets/javascripts/application-946997f430.js"></script>
+      <script src="./assets/javascripts/application-f3ab9e5ff8.js"></script>
       
       
-      <script>app.initialize({version:"0.16.3",url:{base:"."}})</script>
+      <script>app.initialize({url:{base:"."}})</script>
       
     
     

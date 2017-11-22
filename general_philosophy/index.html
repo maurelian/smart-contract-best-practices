@@ -14,24 +14,9 @@
         <meta name="author" content="ConsenSys">
       
       
-        <meta name="lang:clipboard.copy" content="Copy to clipboard">
-      
-        <meta name="lang:clipboard.copied" content="Copied to clipboard">
-      
-        <meta name="lang:search.languages" content="">
-      
-        <meta name="lang:search.result.none" content="No matching documents">
-      
-        <meta name="lang:search.result.one" content="1 matching document">
-      
-        <meta name="lang:search.result.other" content="# matching documents">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
-      
         <link rel="shortcut icon" href="../images/favicon.ico">
       
-      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.12.1">
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.3">
     
     
       
@@ -42,7 +27,7 @@
       <script src="../assets/javascripts/modernizr-e826f8942a.js"></script>
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application-04ea671600.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application-9011e2d3f8.css">
       
     
     
@@ -115,8 +100,8 @@
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
-          <div class="md-search-result__meta">
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="" data-md-lang-tokenizer="[\s\-]+">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
             Type to start searching
           </div>
           <ol class="md-search-result__list"></ol>
@@ -169,11 +154,11 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="drawer">
-    <span class="md-nav__button md-logo">
+    <div class="md-nav__button md-logo">
       
         <i class="md-icon md-icon--home"></i>
       
-    </span>
+    </div>
     Ethereum Smart Contract Best Practices
   </label>
   
@@ -242,6 +227,41 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#prepare-for-failure" title="Prepare for failure" class="md-nav__link">
+    Prepare for failure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollout-carefully" title="Rollout carefully" class="md-nav__link">
+    Rollout carefully
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keep-contracts-simple" title="Keep contracts simple" class="md-nav__link">
+    Keep contracts simple
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stay-up-to-date" title="Stay up to date" class="md-nav__link">
+    Stay up to date
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#be-aware-of-blockchain-properties" title="Be aware of blockchain properties" class="md-nav__link">
+    Be aware of blockchain properties
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fundamental-tradeoffs-simplicity-versus-complexity-cases" title="Fundamental Tradeoffs: Simplicity versus Complexity cases" class="md-nav__link">
     Fundamental Tradeoffs: Simplicity versus Complexity cases
   </a>
@@ -290,8 +310,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../recommendations/" title="Recommendations for Smart Contract Security in Solidity" class="md-nav__link">
-      Recommendations for Smart Contract Security in Solidity
+    <a href="../protocol_recommendations/" title="Recommendations for Smart Contract Logic" class="md-nav__link">
+      Recommendations for Smart Contract Logic
     </a>
   </li>
 
@@ -302,8 +322,32 @@
 
 
   <li class="md-nav__item">
-    <a href="../known_attacks/" title="Known Attacks" class="md-nav__link">
-      Known Attacks
+    <a href="../solidity_recommendations/" title="Recommendations for Secure Solidity Code" class="md-nav__link">
+      Recommendations for Secure Solidity Code
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../protocol_attacks/" title="Protocol Attacks" class="md-nav__link">
+      Protocol Attacks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../solidity_attacks/" title="Solidity Attacks" class="md-nav__link">
+      Solidity Attacks
     </a>
   </li>
 
@@ -387,13 +431,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
     
-    <label class="md-nav__link" for="nav-11">
+    <label class="md-nav__link" for="nav-13">
       About
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-11">
+      <label class="md-nav__title" for="nav-13">
         About
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -459,6 +503,41 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#prepare-for-failure" title="Prepare for failure" class="md-nav__link">
+    Prepare for failure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollout-carefully" title="Rollout carefully" class="md-nav__link">
+    Rollout carefully
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keep-contracts-simple" title="Keep contracts simple" class="md-nav__link">
+    Keep contracts simple
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stay-up-to-date" title="Stay up to date" class="md-nav__link">
+    Stay up to date
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#be-aware-of-blockchain-properties" title="Be aware of blockchain properties" class="md-nav__link">
+    Be aware of blockchain properties
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fundamental-tradeoffs-simplicity-versus-complexity-cases" title="Fundamental Tradeoffs: Simplicity versus Complexity cases" class="md-nav__link">
     Fundamental Tradeoffs: Simplicity versus Complexity cases
   </a>
@@ -513,48 +592,42 @@
                 
                 <p>Ethereum and complex blockchain programs are new and highly experimental. Therefore, you should expect constant changes in the security landscape, as new bugs and security risks are discovered, and new best practices are developed. Following the security practices in this document is therefore only the beginning of the security work you will need to do as a smart contract developer.</p>
 <p>Smart contract programming requires a different engineering mindset than you may be used to. The cost of failure can be high, and change can be difficult, making it in some ways more similar to hardware programming or financial services programming than web or mobile development. It is therefore not enough to defend against known vulnerabilities. Instead, you will need to learn a new philosophy of development:</p>
+<h2 id="prepare-for-failure">Prepare for failure<a class="headerlink" href="#prepare-for-failure" title="Permanent link">&para;</a></h2>
+<p>Any non-trivial contract will have errors in it. Your code must, therefore, be able to respond to bugs and vulnerabilities gracefully.</p>
 <ul>
-<li><strong>Prepare for failure</strong>. Any non-trivial contract will have errors in it. Your code must, therefore, be able to respond to bugs and vulnerabilities gracefully.</li>
 <li>Pause the contract when things are going wrong ('circuit breaker')</li>
 <li>Manage the amount of money at risk (rate limiting, maximum usage)</li>
-<li>
-<p>Have an effective upgrade path for bugfixes and improvements</p>
-</li>
-<li>
-<p><a href="#contract-rollout"><strong>Rollout carefully</strong>.</a> It is always better to catch bugs before a full production release.</p>
-</li>
-<li>Test contracts thoroughly, and add tests whenever new attack vectors are discovered</li>
-<li>Provide <a href="#bounties">bug bounties</a> starting from alpha testnet releases</li>
-<li>
-<p>Rollout in phases, with increasing usage and testing in each phase</p>
-</li>
-<li>
-<p><strong>Keep contracts simple</strong>. Complexity increases the likelihood of errors.</p>
-</li>
+<li>Have an effective upgrade path for bugfixes and improvements</li>
+</ul>
+<h2 id="rollout-carefully">Rollout carefully<a class="headerlink" href="#rollout-carefully" title="Permanent link">&para;</a></h2>
+<p>It is always better to catch bugs before a full production release.
+  - Test contracts thoroughly, and add tests whenever new attack vectors are discovered
+  - Provide <a href="#bounties">bug bounties</a> starting from alpha testnet releases
+  - Rollout in phases, with increasing usage and testing in each phase</p>
+<h2 id="keep-contracts-simple">Keep contracts simple<a class="headerlink" href="#keep-contracts-simple" title="Permanent link">&para;</a></h2>
+<p>Complexity increases the likelihood of errors.</p>
+<ul>
 <li>Ensure the contract logic is simple</li>
 <li>Modularize code to keep contracts and functions small</li>
 <li>Use already-written tools or code where possible (eg. don't roll your own random number generator)</li>
 <li>Prefer clarity to performance whenever possible</li>
-<li>
-<p>Only use the blockchain for the parts of your system that require decentralization</p>
-</li>
-<li>
-<p><strong>Stay up to date</strong>. Use the resources listed in the next section to keep track of new security developments.</p>
-</li>
+<li>Only use the blockchain for the parts of your system that require decentralization</li>
+</ul>
+<h2 id="stay-up-to-date">Stay up to date<a class="headerlink" href="#stay-up-to-date" title="Permanent link">&para;</a></h2>
+<p>Use the resources listed in the next section to keep track of new security developments.</p>
+<ul>
 <li>Check your contracts for any new bug that's discovered</li>
 <li>Upgrade to the latest version of any tool or library as soon as possible</li>
-<li>
-<p>Adopt new security techniques that appear useful</p>
-</li>
-<li>
-<p><strong>Be aware of blockchain properties</strong>. While much of your programming experience will be relevant to Ethereum programming, there are some pitfalls to be aware of.</p>
-</li>
+<li>Adopt new security techniques that appear useful</li>
+</ul>
+<h2 id="be-aware-of-blockchain-properties">Be aware of blockchain properties<a class="headerlink" href="#be-aware-of-blockchain-properties" title="Permanent link">&para;</a></h2>
+<p>While much of your programming experience will be relevant to Ethereum programming, there are some pitfalls to be aware of.</p>
+<ul>
 <li>Be extremely careful about external contract calls, which may execute malicious code and change control flow.</li>
 <li>Understand that your public functions are public, and may be called maliciously. Your private data is also viewable by anyone.</li>
 <li>Keep gas costs and the block gas limit in mind.</li>
 </ul>
-<h3 id="fundamental-tradeoffs-simplicity-versus-complexity-cases">Fundamental Tradeoffs: Simplicity versus Complexity cases<a class="headerlink" href="#fundamental-tradeoffs-simplicity-versus-complexity-cases" title="Permanent link">&para;</a></h3>
-<p><a name="fundamental-tradeoffs"></a></p>
+<h2 id="fundamental-tradeoffs-simplicity-versus-complexity-cases">Fundamental Tradeoffs: Simplicity versus Complexity cases<a class="headerlink" href="#fundamental-tradeoffs-simplicity-versus-complexity-cases" title="Permanent link">&para;</a></h2>
 <p>There are multiple fundamental tradeoffs to consider when assessing the structure and security of a smart contract system.  The general recommendation for any smart contract system is to identify the proper balance for these fundamental tradeoffs.</p>
 <p>An ideal smart contract system from a software engineering bias is modular, reuses code instead of duplicating it, and supports upgradeable components.  An ideal smart contract system from a secure architecture bias may share this mindset, especially in the case of more complex smart contract systems.</p>
 <p>However, there are important exceptions where security and software engineering best practices may not be aligned.  In each case, the proper balance is obtained by identifying the optimal mix of properties along contract system dimensions such as:</p>
@@ -563,13 +636,13 @@
 <li>Monolithic versus Modular</li>
 <li>Duplication versus Reuse</li>
 </ul>
-<h4 id="rigid-versus-upgradeable">Rigid versus Upgradeable<a class="headerlink" href="#rigid-versus-upgradeable" title="Permanent link">&para;</a></h4>
+<h3 id="rigid-versus-upgradeable">Rigid versus Upgradeable<a class="headerlink" href="#rigid-versus-upgradeable" title="Permanent link">&para;</a></h3>
 <p>While multiple resources, including this one, emphasize malleability characteristics such as Killable, Upgradeable or Modifiable patterns there is a <em>fundamental tradeoff</em> between malleability and security.</p>
 <p>Malleability patterns by definition add complexity and potential attack surfaces.  Simplicity is particularly effective over complexity in cases where the smart contract system performs a very limited set of functionality for a pre-defined limited period of time, for example, a governance-free finite-time-frame token-sale contract system.</p>
-<h4 id="monolithic-versus-modular">Monolithic versus Modular<a class="headerlink" href="#monolithic-versus-modular" title="Permanent link">&para;</a></h4>
+<h3 id="monolithic-versus-modular">Monolithic versus Modular<a class="headerlink" href="#monolithic-versus-modular" title="Permanent link">&para;</a></h3>
 <p>A monolithic self-contained contract keeps all knowledge locally identifiable and readable.  While there are few smart contract systems held in high regard that exist as monoliths, there is an argument to be made for extreme locality of data and flow - for example, in the case of optimizing code review efficiency.</p>
 <p>As with the other tradeoffs considered here, security best practices trend away from software engineering best practices in simple short-lived contracts and trend toward software engineering best practices in the case of more complex perpetual contract systems.</p>
-<h4 id="duplication-versus-reuse">Duplication versus Reuse<a class="headerlink" href="#duplication-versus-reuse" title="Permanent link">&para;</a></h4>
+<h3 id="duplication-versus-reuse">Duplication versus Reuse<a class="headerlink" href="#duplication-versus-reuse" title="Permanent link">&para;</a></h3>
 <p>A smart contract system from a software engineering perspective wishes to maximize reuse where reasonable.  There are many ways to reuse contract code in Solidity.  Using proven previously-deployed contracts <em>which you own</em> is generally the safest manner to achieve code reuse.</p>
 <p>Duplication is frequently relied upon in cases where self-owned previously-deployed contracts are not available.  Efforts such as <a href="https://github.com/ConsenSys/live-libs">Live Libs</a> and <a href="https://github.com/OpenZeppelin/zeppelin-solidity">Zeppelin Solidity</a> seek to provide patterns such that secure code can be re-used without duplication.  Any contract security analyses must include any re-used code that has not previously established a level of trust commensurate with the funds at risk in the target smart contract system.</p>
                 
@@ -605,13 +678,13 @@
           </a>
         
         
-          <a href="../recommendations/" title="Recommendations for Smart Contract Security in Solidity" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../protocol_recommendations/" title="Recommendations for Smart Contract Logic" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Recommendations for Smart Contract Security in Solidity
+                Recommendations for Smart Contract Logic
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -641,10 +714,10 @@
       
     </div>
     
-      <script src="../assets/javascripts/application-946997f430.js"></script>
+      <script src="../assets/javascripts/application-f3ab9e5ff8.js"></script>
       
       
-      <script>app.initialize({version:"0.16.3",url:{base:".."}})</script>
+      <script>app.initialize({url:{base:".."}})</script>
       
     
     
