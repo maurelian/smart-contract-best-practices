@@ -8,7 +8,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="https://github.com/ConsenSys/smart-contract-best-practices/protocol_attacks/">
+        <link rel="canonical" href="https://github.com/ConsenSys/smart-contract-best-practices/known_attacks/">
       
       
         <meta name="author" content="ConsenSys">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Protocol Attacks - Ethereum Smart Contract Best Practices</title>
+        <title>Known Attacks - Ethereum Smart Contract Best Practices</title>
       
     
     
@@ -82,7 +82,7 @@
             
               
             
-            Protocol Attacks
+            Known Attacks
           
         </span>
       </div>
@@ -216,20 +216,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../protocol_recommendations/" title="Recommendations for Smart Contract Logic" class="md-nav__link">
-      Recommendations for Smart Contract Logic
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../solidity_recommendations/" title="Recommendations for Secure Solidity Code" class="md-nav__link">
-      Recommendations for Secure Solidity Code
+    <a href="../recommendations/" title="Recommendations for Smart Contract Security in Solidity" class="md-nav__link">
+      Recommendations for Smart Contract Security in Solidity
     </a>
   </li>
 
@@ -247,11 +235,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Protocol Attacks
+        Known Attacks
       </label>
     
-    <a href="./" title="Protocol Attacks" class="md-nav__link md-nav__link--active">
-      Protocol Attacks
+    <a href="./" title="Known Attacks" class="md-nav__link md-nav__link--active">
+      Known Attacks
     </a>
     
       
@@ -311,8 +299,29 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#integer-overflow-and-underflow" title="Integer Overflow and Underflow" class="md-nav__link">
+    Integer Overflow and Underflow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dos-with-unexpected-revert" title="DoS with (Unexpected) revert" class="md-nav__link">
+    DoS with (Unexpected) revert
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dos-with-block-gas-limit" title="DoS with Block Gas Limit" class="md-nav__link">
     DoS with Block Gas Limit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forcibly-sending-ether-to-a-contract" title="Forcibly Sending Ether to a Contract" class="md-nav__link">
+    Forcibly Sending Ether to a Contract
   </a>
   
 </li>
@@ -343,18 +352,6 @@
   
 </nav>
     
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../solidity_attacks/" title="Solidity Attacks" class="md-nav__link">
-      Solidity Attacks
-    </a>
   </li>
 
     
@@ -437,13 +434,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
     
-    <label class="md-nav__link" for="nav-13">
+    <label class="md-nav__link" for="nav-11">
       About
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-13">
+      <label class="md-nav__title" for="nav-11">
         About
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -557,8 +554,29 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#integer-overflow-and-underflow" title="Integer Overflow and Underflow" class="md-nav__link">
+    Integer Overflow and Underflow
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dos-with-unexpected-revert" title="DoS with (Unexpected) revert" class="md-nav__link">
+    DoS with (Unexpected) revert
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dos-with-block-gas-limit" title="DoS with Block Gas Limit" class="md-nav__link">
     DoS with Block Gas Limit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forcibly-sending-ether-to-a-contract" title="Forcibly Sending Ether to a Contract" class="md-nav__link">
+    Forcibly Sending Ether to a Contract
   </a>
   
 </li>
@@ -597,10 +615,10 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ConsenSys/smart-contract-best-practices/edit/master/docs/protocol_attacks.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/ConsenSys/smart-contract-best-practices/edit/master/docs/known_attacks.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Protocol Attacks</h1>
+                  <h1>Known Attacks</h1>
                 
                 <p>The following is a list of known attacks which you should be aware of, and defend against when writing smart contracts.</p>
 <h2 id="race-conditions42">Race Conditions<sup><a href='#footnote-race-condition-terminology'>*</a></sup><a class="headerlink" href="#race-conditions42" title="Permanent link">&para;</a></h2>
@@ -763,7 +781,68 @@
 <span class="p">}</span>
 </pre></div>
 
+<h2 id="integer-overflow-and-underflow">Integer Overflow and Underflow<a class="headerlink" href="#integer-overflow-and-underflow" title="Permanent link">&para;</a></h2>
+<p>Be aware there are around <a href="https://github.com/ethereum/solidity/issues/796#issuecomment-253578925">20 cases for overflow and underflow</a>.</p>
+<p>Consider a simple token transfer:</p>
+<div class="highlight"><pre><span></span><span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint256</span><span class="p">)</span> <span class="kr">public</span> <span class="n">balanceOf</span><span class="p">;</span>
+
+<span class="c1">// INSECURE</span>
+<span class="kd">function</span> <span class="nb">transfer</span><span class="p">(</span><span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/* Check if sender has balance */</span>
+    <span class="nb">require</span><span class="p">(</span><span class="n">balanceOf</span><span class="p">[</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">_value</span><span class="p">);</span>
+    <span class="cm">/* Add and subtract new balances */</span>
+    <span class="n">balanceOf</span><span class="p">[</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">]</span> <span class="o">-=</span> <span class="n">_value</span><span class="p">;</span>
+    <span class="n">balanceOf</span><span class="p">[</span><span class="n">_to</span><span class="p">]</span> <span class="o">+=</span> <span class="n">_value</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// SECURE</span>
+<span class="kd">function</span> <span class="nb">transfer</span><span class="p">(</span><span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/* Check if sender has balance and for overflows */</span>
+    <span class="nb">require</span><span class="p">(</span><span class="n">balanceOf</span><span class="p">[</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">_value</span> <span class="o">&amp;&amp;</span> <span class="n">balanceOf</span><span class="p">[</span><span class="n">_to</span><span class="p">]</span> <span class="o">+</span> <span class="n">_value</span> <span class="o">&gt;=</span> <span class="n">balanceOf</span><span class="p">[</span><span class="n">_to</span><span class="p">]);</span>
+
+    <span class="cm">/* Add and subtract new balances */</span>
+    <span class="n">balanceOf</span><span class="p">[</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">]</span> <span class="o">-=</span> <span class="n">_value</span><span class="p">;</span>
+    <span class="n">balanceOf</span><span class="p">[</span><span class="n">_to</span><span class="p">]</span> <span class="o">+=</span> <span class="n">_value</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>If a balance reaches the maximum uint value (2^256) it will circle back to zero. This checks for that condition. This may or may not be relevant, depending on the implementation. Think about whether or not the uint value has an opportunity to approach such a large number. Think about how the uint variable changes state, and who has authority to make such changes. If any user can call functions which update the uint value, it's more vulnerable to attack. If only an admin has access to change the variable's state, you might be safe. If a user can increment by only 1 at a time, you are probably also safe because there is no feasible way to reach this limit.</p>
+<p>The same is true for underflow. If a uint is made to be less than zero, it will cause an underflow and get set to its maximum value.</p>
+<p>Be careful with the smaller data-types like uint8, uint16, uint24...etc: they can even more easily hit their maximum value.</p>
+<p>Be aware there are around <a href="https://github.com/ethereum/solidity/issues/796#issuecomment-253578925">20 cases for overflow and underflow</a>.</p>
 <p><a name="dos-with-unexpected-revert"></a></p>
+<h2 id="dos-with-unexpected-revert">DoS with (Unexpected) revert<a class="headerlink" href="#dos-with-unexpected-revert" title="Permanent link">&para;</a></h2>
+<p>Consider a simple auction contract:</p>
+<div class="highlight"><pre><span></span><span class="c1">// INSECURE</span>
+<span class="kd">contract</span> <span class="n">Auction</span> <span class="p">{</span>
+    <span class="kt">address</span> <span class="n">currentLeader</span><span class="p">;</span>
+    <span class="kt">uint</span> <span class="n">highestBid</span><span class="p">;</span>
+
+    <span class="kd">function</span> <span class="n">bid</span><span class="p">()</span> <span class="kr">payable</span> <span class="p">{</span>
+        <span class="nb">require</span><span class="p">(</span><span class="nb">msg</span><span class="p">.</span><span class="nb">value</span> <span class="o">&gt;</span> <span class="n">highestBid</span><span class="p">);</span>
+
+        <span class="nb">require</span><span class="p">(</span><span class="n">currentLeader</span><span class="p">.</span><span class="nb">send</span><span class="p">(</span><span class="n">highestBid</span><span class="p">));</span> <span class="c1">// Refund the old leader, if it fails then revert</span>
+
+        <span class="n">currentLeader</span> <span class="o">=</span> <span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">;</span>
+        <span class="n">highestBid</span> <span class="o">=</span> <span class="nb">msg</span><span class="p">.</span><span class="nb">value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>When it tries to refund the old leader, it reverts if the refund fails. This means that a malicious bidder can become the leader while making sure that any refunds to their address will <em>always</em> fail. In this way, they can prevent anyone else from calling the <code>bid()</code> function, and stay the leader forever. A recommendation is to set up a <a href="https://github.com/ConsenSys/smart-contract-best-practices/#favor-pull-over-push-payments">pull payment system</a> instead, as described earlier.</p>
+<p>Another example is when a contract may iterate through an array to pay users (e.g., supporters in a crowdfunding contract). It's common to want to make sure that each payment succeeds. If not, one should revert. The issue is that if one call fails, you are reverting the whole payout system, meaning the loop will never complete. No one gets paid because one address is forcing an error.</p>
+<div class="highlight"><pre><span></span><span class="kt">address</span><span class="p">[]</span> <span class="kr">private</span> <span class="n">refundAddresses</span><span class="p">;</span>
+<span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="kr">public</span> <span class="n">refunds</span><span class="p">;</span>
+
+<span class="c1">// bad</span>
+<span class="kd">function</span> <span class="n">refundAll</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">uint</span> <span class="n">x</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">refundAddresses</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// arbitrary length iteration based on how many addresses participated</span>
+        <span class="nb">require</span><span class="p">(</span><span class="n">refundAddresses</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="nb">send</span><span class="p">(</span><span class="n">refunds</span><span class="p">[</span><span class="n">refundAddresses</span><span class="p">[</span><span class="n">x</span><span class="p">]]))</span> <span class="c1">// doubly bad, now a single failure on send will hold up all funds</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Again, the recommended solution is to <a href="#favor-pull-over-push-payments">favor pull over push payments</a>.</p>
 <h2 id="dos-with-block-gas-limit">DoS with Block Gas Limit<a class="headerlink" href="#dos-with-block-gas-limit" title="Permanent link">&para;</a></h2>
 <p>You may have noticed another problem with the previous example: by paying out to everyone at once, you risk running into the block gas limit. Each Ethereum block can process a certain maximum amount of computation. If you try to go over that, your transaction will fail.</p>
 <p>This can lead to problems even in the absence of an intentional attack. However, it's especially bad if an attacker can manipulate the amount of gas needed. In the case of the previous example, the attacker could add a bunch of addresses, each of which needs to get a very small refund. The gas cost of refunding each of the attacker's addresses could, therefore, end up being more than the gas limit, blocking the refund transaction from happening at all.</p>
@@ -788,8 +867,26 @@
 </pre></div>
 
 <p>You will need to make sure that nothing bad will happen if other transactions are processed while waiting for the next iteration of the <code>payOut()</code> function. So only use this pattern if absolutely necessary.</p>
+<h2 id="forcibly-sending-ether-to-a-contract">Forcibly Sending Ether to a Contract<a class="headerlink" href="#forcibly-sending-ether-to-a-contract" title="Permanent link">&para;</a></h2>
+<p>It is possible to forcibly send Ether to a contract without triggering its fallback function. This is an important consideration when placing important logic in the fallback function or making calculations based on a contract's balance. Take the following example:</p>
+<div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Vulnerable</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="p">()</span> <span class="kr">payable</span> <span class="p">{</span>
+        <span class="nb">revert</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="n">somethingBad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">require</span><span class="p">(</span><span class="nb">this</span><span class="p">.</span><span class="nb">balance</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="c1">// Do something bad</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Contract logic seems to disallow payments to the contract and therefore disallow "something bad" from happening. However, a few methods exist for forcibly sending ether to the contract and therefore making its balance greater than zero. </p>
+<p>The <code>selfdestruct</code> contract method allows a user to specify a beneficiary to send any excess ether. <code>selfdestruct</code> <a href="https://solidity.readthedocs.io/en/develop/security-considerations.html#sending-and-receiving-ether">does not trigger a contract's fallback function</a>. </p>
+<p>It is also possible to <a href="https://github.com/Arachnid/uscc/tree/master/submissions-2017/ricmoo">precompute</a> a contract's address and send Ether to that address before deploying the contract.</p>
+<p>Contract developers should be aware that Ether can be forcibly sent to a contract and should design contract logic accordingly. Generally, assume that it is not possible to restrict sources of funding to your contract. </p>
 <h2 id="deprecatedhistorical-attacks">Deprecated/historical attacks<a class="headerlink" href="#deprecatedhistorical-attacks" title="Permanent link">&para;</a></h2>
-<p>These are attacks which are no longer possible due to changes in the protocol or improvements to solidity. They are recorded here for posterity and awareness.</p>
+<p>These are attacks which are no longer possible due to changes in the protocol or improvements to solidity. They are recorded here for posterity and awareness. </p>
 <h3 id="call-depth-attack-deprecated">Call Depth Attack (deprecated)<a class="headerlink" href="#call-depth-attack-deprecated" title="Permanent link">&para;</a></h3>
 <p>As of the <a href="https://github.com/ethereum/EIPs/issues/150">EIP 150</a> hardfork, call depth attacks are no longer relevant<sup><a href='http://ethereum.stackexchange.com/questions/9398/how-does-eip-150-change-the-call-depth-attack'>*</a></sup> (all gas would be consumed well before reaching the 1024 call depth limit).</p>
                 
@@ -810,7 +907,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../solidity_recommendations/" title="Recommendations for Secure Solidity Code" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../recommendations/" title="Recommendations for Smart Contract Security in Solidity" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -819,19 +916,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Recommendations for Secure Solidity Code
+                Recommendations for Smart Contract Security in Solidity
               </span>
             </div>
           </a>
         
         
-          <a href="../solidity_attacks/" title="Solidity Attacks" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../software_engineering/" title="Software Engineering Techniques" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Solidity Attacks
+                Software Engineering Techniques
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

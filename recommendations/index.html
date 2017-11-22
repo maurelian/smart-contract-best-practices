@@ -8,7 +8,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="https://github.com/ConsenSys/smart-contract-best-practices/solidity_recommendations/">
+        <link rel="canonical" href="https://github.com/ConsenSys/smart-contract-best-practices/recommendations/">
       
       
         <meta name="author" content="ConsenSys">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Recommendations for Secure Solidity Code - Ethereum Smart Contract Best Practices</title>
+        <title>Recommendations for Smart Contract Security in Solidity - Ethereum Smart Contract Best Practices</title>
       
     
     
@@ -82,7 +82,7 @@
             
               
             
-            Recommendations for Secure Solidity Code
+            Recommendations for Smart Contract Security in Solidity
           
         </span>
       </div>
@@ -214,18 +214,6 @@
       
       
 
-
-  <li class="md-nav__item">
-    <a href="../protocol_recommendations/" title="Recommendations for Smart Contract Logic" class="md-nav__link">
-      Recommendations for Smart Contract Logic
-    </a>
-  </li>
-
-    
-      
-      
-      
-
   
 
 
@@ -235,11 +223,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Recommendations for Secure Solidity Code
+        Recommendations for Smart Contract Security in Solidity
       </label>
     
-    <a href="./" title="Recommendations for Secure Solidity Code" class="md-nav__link md-nav__link--active">
-      Recommendations for Secure Solidity Code
+    <a href="./" title="Recommendations for Smart Contract Security in Solidity" class="md-nav__link md-nav__link--active">
+      Recommendations for Smart Contract Security in Solidity
     </a>
     
       
@@ -273,8 +261,29 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#dont-make-control-flow-assumptions-after-external-calls" title="Don't make control flow assumptions after external calls" class="md-nav__link">
+    Don't make control flow assumptions after external calls
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#be-aware-of-the-tradeoffs-between-send-transfer-and-callvalue" title="Be aware of the tradeoffs between send(), transfer(), and call.value()()" class="md-nav__link">
     Be aware of the tradeoffs between send(), transfer(), and call.value()()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handle-errors-in-external-calls" title="Handle errors in external calls" class="md-nav__link">
+    Handle errors in external calls
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#favor-pull-over-push-for-external-calls" title="Favor pull over push for external calls" class="md-nav__link">
+    Favor pull over push for external calls
   </a>
   
 </li>
@@ -285,15 +294,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-assert-and-require-properly" title="Use assert() and require() properly" class="md-nav__link">
-    Use assert() and require() properly
+  <a href="#enforce-invariants-with-assert" title="Enforce invariants with assert()" class="md-nav__link">
+    Enforce invariants with assert()
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#remember-that-ether-can-be-forcibly-sent-to-an-account" title="Remember that Ether can be forcibly sent to an account" class="md-nav__link">
-    Remember that Ether can be forcibly sent to an account
+  <a href="#use-assert-and-require-properly" title="Use assert() and require() properly" class="md-nav__link">
+    Use assert() and require() properly
   </a>
   
 </li>
@@ -306,8 +315,36 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#remember-that-ether-can-be-forcibly-sent-to-an-account" title="Remember that Ether can be forcibly sent to an account" class="md-nav__link">
+    Remember that Ether can be forcibly sent to an account
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dont-assume-contracts-are-created-with-zero-balance" title="Don't assume contracts are created with zero balance" class="md-nav__link">
+    Don't assume contracts are created with zero balance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remember-that-on-chain-data-is-public" title="Remember that on-chain data is public" class="md-nav__link">
+    Remember that on-chain data is public
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#be-aware-of-the-tradeoffs-between-abstract-contracts-and-interfaces" title="Be aware of the tradeoffs between abstract contracts and interfaces" class="md-nav__link">
     Be aware of the tradeoffs between abstract contracts and interfaces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-2-party-or-n-party-contracts-beware-of-the-possibility-that-some-participants-may-drop-offline-and-not-return" title="In 2-party or N-party contracts, beware of the possibility that some participants may "drop offline" and not return" class="md-nav__link">
+    In 2-party or N-party contracts, beware of the possibility that some participants may "drop offline" and not return
   </a>
   
 </li>
@@ -396,20 +433,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../protocol_attacks/" title="Protocol Attacks" class="md-nav__link">
-      Protocol Attacks
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../solidity_attacks/" title="Solidity Attacks" class="md-nav__link">
-      Solidity Attacks
+    <a href="../known_attacks/" title="Known Attacks" class="md-nav__link">
+      Known Attacks
     </a>
   </li>
 
@@ -493,13 +518,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
     
-    <label class="md-nav__link" for="nav-13">
+    <label class="md-nav__link" for="nav-11">
       About
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-13">
+      <label class="md-nav__title" for="nav-11">
         About
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -587,8 +612,29 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#dont-make-control-flow-assumptions-after-external-calls" title="Don't make control flow assumptions after external calls" class="md-nav__link">
+    Don't make control flow assumptions after external calls
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#be-aware-of-the-tradeoffs-between-send-transfer-and-callvalue" title="Be aware of the tradeoffs between send(), transfer(), and call.value()()" class="md-nav__link">
     Be aware of the tradeoffs between send(), transfer(), and call.value()()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handle-errors-in-external-calls" title="Handle errors in external calls" class="md-nav__link">
+    Handle errors in external calls
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#favor-pull-over-push-for-external-calls" title="Favor pull over push for external calls" class="md-nav__link">
+    Favor pull over push for external calls
   </a>
   
 </li>
@@ -599,15 +645,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-assert-and-require-properly" title="Use assert() and require() properly" class="md-nav__link">
-    Use assert() and require() properly
+  <a href="#enforce-invariants-with-assert" title="Enforce invariants with assert()" class="md-nav__link">
+    Enforce invariants with assert()
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#remember-that-ether-can-be-forcibly-sent-to-an-account" title="Remember that Ether can be forcibly sent to an account" class="md-nav__link">
-    Remember that Ether can be forcibly sent to an account
+  <a href="#use-assert-and-require-properly" title="Use assert() and require() properly" class="md-nav__link">
+    Use assert() and require() properly
   </a>
   
 </li>
@@ -620,8 +666,36 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#remember-that-ether-can-be-forcibly-sent-to-an-account" title="Remember that Ether can be forcibly sent to an account" class="md-nav__link">
+    Remember that Ether can be forcibly sent to an account
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dont-assume-contracts-are-created-with-zero-balance" title="Don't assume contracts are created with zero balance" class="md-nav__link">
+    Don't assume contracts are created with zero balance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remember-that-on-chain-data-is-public" title="Remember that on-chain data is public" class="md-nav__link">
+    Remember that on-chain data is public
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#be-aware-of-the-tradeoffs-between-abstract-contracts-and-interfaces" title="Be aware of the tradeoffs between abstract contracts and interfaces" class="md-nav__link">
     Be aware of the tradeoffs between abstract contracts and interfaces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-2-party-or-n-party-contracts-beware-of-the-possibility-that-some-participants-may-drop-offline-and-not-return" title="In 2-party or N-party contracts, beware of the possibility that some participants may "drop offline" and not return" class="md-nav__link">
+    In 2-party or N-party contracts, beware of the possibility that some participants may "drop offline" and not return
   </a>
   
 </li>
@@ -709,10 +783,10 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ConsenSys/smart-contract-best-practices/edit/master/docs/solidity_recommendations.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/ConsenSys/smart-contract-best-practices/edit/master/docs/recommendations.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Recommendations for Secure Solidity Code</h1>
+                  <h1>Recommendations for Smart Contract Security in Solidity</h1>
                 
                 <p>This page demonstrates a number of solidity patterns which should generally be followed when writing smart contracts.</p>
 <h2 id="external-calls">External Calls<a class="headerlink" href="#external-calls" title="Permanent link">&para;</a></h2>
@@ -736,6 +810,10 @@
 <span class="p">}</span>
 </pre></div>
 
+<h3 id="dont-make-control-flow-assumptions-after-external-calls">Don't make control flow assumptions after external calls<a class="headerlink" href="#dont-make-control-flow-assumptions-after-external-calls" title="Permanent link">&para;</a></h3>
+<p>Whether using <em>raw calls</em> (of the form <code>someAddress.call()</code>) or <em>contract calls</em> (of the form <code>ExternalContract.someMethod()</code>), assume that malicious code will execute unless the untrusted. Even if <code>ExternalContract</code> is not malicious, malicious code can be executed by any contracts <em>it</em> calls. </p>
+<p>One particular danger is malicious code may hijack the control flow, leading to race conditions. (See <a href="https://github.com/ConsenSys/smart-contract-best-practices/#race-conditions">Race Conditions</a> for a fuller discussion of this problem).</p>
+<p>If you are making a call to an untrusted external contract, <em>avoid state changes after the call</em>.</p>
 <h3 id="be-aware-of-the-tradeoffs-between-send-transfer-and-callvalue">Be aware of the tradeoffs between <code>send()</code>, <code>transfer()</code>, and <code>call.value()()</code><a class="headerlink" href="#be-aware-of-the-tradeoffs-between-send-transfer-and-callvalue" title="Permanent link">&para;</a></h3>
 <p>When sending ether be aware of the relative tradeoffs between the use of
 <code>someAddress.send()</code>, <code>someAddress.transfer()</code>, and <code>someAddress.call.value()()</code>.</p>
@@ -755,9 +833,68 @@ for the <em>push</em> component and <code>call.value()()</code> for the <em>pull
 <p>It is worth pointing out that exclusive use of <code>send()</code> or <code>transfer()</code> for value transfers
 does not itself make a contract safe against reentrancy but only makes those
 specific value transfers safe against reentrancy.</p>
-<h2 id="use-assert-and-require-properly">Use <code>assert()</code> and <code>require()</code> properly<a class="headerlink" href="#use-assert-and-require-properly" title="Permanent link">&para;</a></h2>
-<p>In Solidity 0.4.10 <code>assert()</code> and <code>require()</code> were introduced. <code>require(condition)</code> is meant to be used for input validation, which should be done on any user input, and reverts if the condition is false. <code>assert(condition)</code> also reverts if the condition is false but should be used only for invariants: internal errors or to check if your contract has reached an invalid state. Following this paradigm allows formal analysis tools to verify that the invalid opcode can never be reached: meaning no invariants in the code are violated and that the code is formally verified.</p>
-<p>For example, the token to ether issuance ratio, in a token issuance contract, may be fixed. You can verify that this is the case at all times with an <code>assert()</code>. Assert guards should often be combined with other techniques, such as pausing the contract and allowing upgrades. (Otherwise, you may end up stuck, with an assertion that is always failing.)</p>
+<h3 id="handle-errors-in-external-calls">Handle errors in external calls<a class="headerlink" href="#handle-errors-in-external-calls" title="Permanent link">&para;</a></h3>
+<p>Solidity offers low-level call methods that work on raw addresses: <code>address.call()</code>, <code>address.callcode()</code>, <code>address.delegatecall()</code>, and <code>address.send()</code>. These low-level methods never throw an exception, but will return <code>false</code> if the call encounters an exception. On the other hand, <em>contract calls</em> (e.g., <code>ExternalContract.doSomething()</code>) will automatically propagate a throw (for example, <code>ExternalContract.doSomething()</code> will also <code>throw</code> if <code>doSomething()</code> throws).</p>
+<p>If you choose to use the low-level call methods, make sure to handle the possibility that the call will fail, by checking the return value.</p>
+<div class="highlight"><pre><span></span><span class="c1">// bad</span>
+<span class="n">someAddress</span><span class="p">.</span><span class="nb">send</span><span class="p">(</span><span class="mi">55</span><span class="p">);</span>
+<span class="n">someAddress</span><span class="p">.</span><span class="nb">call</span><span class="p">.</span><span class="nb">value</span><span class="p">(</span><span class="mi">55</span><span class="p">)();</span> <span class="c1">// this is doubly dangerous, as it will forward all remaining gas and doesn&#39;t check for result</span>
+<span class="n">someAddress</span><span class="p">.</span><span class="nb">call</span><span class="p">.</span><span class="nb">value</span><span class="p">(</span><span class="mi">100</span><span class="p">)(</span><span class="kt">bytes4</span><span class="p">(</span><span class="nf">sha3</span><span class="p">(</span><span class="s">&quot;deposit()&quot;</span><span class="p">)));</span> <span class="c1">// if deposit throws an exception, the raw call() will only return false and transaction will NOT be reverted</span>
+
+<span class="c1">// good</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">someAddress</span><span class="p">.</span><span class="nb">send</span><span class="p">(</span><span class="mi">55</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// Some failure code</span>
+<span class="p">}</span>
+
+<span class="n">ExternalContract</span><span class="p">(</span><span class="n">someAddress</span><span class="p">).</span><span class="n">deposit</span><span class="p">.</span><span class="nb">value</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+
+<h3 id="favor-pull-over-push-for-external-calls">Favor <em>pull</em> over <em>push</em> for external calls<a class="headerlink" href="#favor-pull-over-push-for-external-calls" title="Permanent link">&para;</a></h3>
+<p>External calls can fail accidentally or deliberately. To minimize the damage caused by such failures, it is often better to isolate each external call into its own transaction that can be initiated by the recipient of the call. This is especially relevant for payments, where it is better to let users withdraw funds rather than push funds to them automatically. (This also reduces the chance of <a href="https://github.com/ConsenSys/smart-contract-best-practices/#dos-with-block-gas-limit">problems with the gas limit</a>.)  Avoid combining multiple <code>send()</code> calls in a single transaction.</p>
+<div class="highlight"><pre><span></span><span class="c1">// bad</span>
+<span class="kd">contract</span> <span class="n">auction</span> <span class="p">{</span>
+    <span class="kt">address</span> <span class="n">highestBidder</span><span class="p">;</span>
+    <span class="kt">uint</span> <span class="n">highestBid</span><span class="p">;</span>
+
+    <span class="kd">function</span> <span class="n">bid</span><span class="p">()</span> <span class="kr">payable</span> <span class="p">{</span>
+        <span class="nb">require</span><span class="p">(</span><span class="nb">msg</span><span class="p">.</span><span class="nb">value</span> <span class="o">&gt;=</span> <span class="n">highestBid</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">highestBidder</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">highestBidder</span><span class="p">.</span><span class="nb">transfer</span><span class="p">(</span><span class="n">highestBid</span><span class="p">);</span> <span class="c1">// if this call consistently fails, no one else can bid</span>
+        <span class="p">}</span>
+
+       <span class="n">highestBidder</span> <span class="o">=</span> <span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">;</span>
+       <span class="n">highestBid</span> <span class="o">=</span> <span class="nb">msg</span><span class="p">.</span><span class="nb">value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// good</span>
+<span class="kd">contract</span> <span class="n">auction</span> <span class="p">{</span>
+    <span class="kt">address</span> <span class="n">highestBidder</span><span class="p">;</span>
+    <span class="kt">uint</span> <span class="n">highestBid</span><span class="p">;</span>
+    <span class="kd">mapping</span><span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">refunds</span><span class="p">;</span>
+
+    <span class="kd">function</span> <span class="n">bid</span><span class="p">()</span> <span class="kr">payable</span> <span class="kr">external</span> <span class="p">{</span>
+        <span class="nb">require</span><span class="p">(</span><span class="nb">msg</span><span class="p">.</span><span class="nb">value</span> <span class="o">&gt;=</span> <span class="n">highestBid</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">highestBidder</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">refunds</span><span class="p">[</span><span class="n">highestBidder</span><span class="p">]</span> <span class="o">+=</span> <span class="n">highestBid</span><span class="p">;</span> <span class="c1">// record the refund that this user can claim</span>
+        <span class="p">}</span>
+
+        <span class="n">highestBidder</span> <span class="o">=</span> <span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">;</span>
+        <span class="n">highestBid</span> <span class="o">=</span> <span class="nb">msg</span><span class="p">.</span><span class="nb">value</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="n">withdrawRefund</span><span class="p">()</span> <span class="kr">external</span> <span class="p">{</span>
+        <span class="kt">uint</span> <span class="n">refund</span> <span class="o">=</span> <span class="n">refunds</span><span class="p">[</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">];</span>
+        <span class="n">refunds</span><span class="p">[</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">.</span><span class="nb">transfer</span><span class="p">(</span><span class="n">refund</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="enforce-invariants-with-assert">Enforce invariants with <code>assert()</code><a class="headerlink" href="#enforce-invariants-with-assert" title="Permanent link">&para;</a></h2>
+<p>An assert guard triggers when an assertion fails - such as an invariant property changing. For example, the token to ether issuance ratio, in a token issuance contract, may be fixed. You can verify that this is the case at all times with an <code>assert()</code>. Assert guards should often be combined with other techniques, such as pausing the contract and allowing upgrades. (Otherwise, you may end up stuck, with an assertion that is always failing.)</p>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Token</span> <span class="p">{</span>
     <span class="kd">mapping</span><span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="kr">public</span> <span class="n">balanceOf</span><span class="p">;</span>
@@ -772,12 +909,8 @@ specific value transfers safe against reentrancy.</p>
 </pre></div>
 
 <p>Note that the assertion is <em>not</em> a strict equality of the balance because the contract can be <a href="#ether-forcibly-sent">forcibly sent ether</a> without going through the <code>deposit()</code> function!</p>
-<h2 id="remember-that-ether-can-be-forcibly-sent-to-an-account">Remember that Ether can be forcibly sent to an account<a class="headerlink" href="#remember-that-ether-can-be-forcibly-sent-to-an-account" title="Permanent link">&para;</a></h2>
-<p>Beware of coding an invariant that strictly checks the balance of a contract.</p>
-<p>An attacker can forcibly send wei to any account and this cannot be prevented (not even with a fallback function that does a <code>revert()</code>).</p>
-<p>The attacker can do this by creating a contract, funding it with 1 wei, and invoking
-<code>selfdestruct(victimAddress)</code>.  No code is invoked in <code>victimAddress</code>, so it
-cannot be prevented.</p>
+<h2 id="use-assert-and-require-properly">Use <code>assert()</code> and <code>require()</code> properly<a class="headerlink" href="#use-assert-and-require-properly" title="Permanent link">&para;</a></h2>
+<p>In Solidity 0.4.10 <code>assert()</code> and <code>require()</code> were introduced. <code>require(condition)</code> is meant to be used for input validation, which should be done on any user input, and reverts if the condition is false. <code>assert(condition)</code> also reverts if the condition is false but should be used only for invariants: internal errors or to check if your contract has reached an invalid state. Following this paradigm allows formal analysis tools to verify that the invalid opcode can never be reached: meaning no invariants in the code are violated and that the code is formally verified.</p>
 <h2 id="beware-rounding-with-integer-division">Beware rounding with integer division<a class="headerlink" href="#beware-rounding-with-integer-division" title="Permanent link">&para;</a></h2>
 <p>All integer division rounds down to the nearest integer. If you need more precision, consider using a multiplier, or store both the numerator and denominator.</p>
 <p>(In the future, Solidity will have a fixed-point type, which will make this easier.)</p>
@@ -796,8 +929,27 @@ cannot be prevented.</p>
 <span class="kt">uint</span> <span class="n">numerator</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="kt">uint</span> <span class="n">denominator</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 </pre></div></p>
+<h2 id="remember-that-ether-can-be-forcibly-sent-to-an-account">Remember that Ether can be forcibly sent to an account<a class="headerlink" href="#remember-that-ether-can-be-forcibly-sent-to-an-account" title="Permanent link">&para;</a></h2>
+<p>Beware of coding an invariant that strictly checks the balance of a contract.</p>
+<p>An attacker can forcibly send wei to any account and this cannot be prevented (not even with a fallback function that does a <code>revert()</code>).</p>
+<p>The attacker can do this by creating a contract, funding it with 1 wei, and invoking
+<code>selfdestruct(victimAddress)</code>.  No code is invoked in <code>victimAddress</code>, so it
+cannot be prevented.</p>
+<h2 id="dont-assume-contracts-are-created-with-zero-balance">Don't assume contracts are created with zero balance<a class="headerlink" href="#dont-assume-contracts-are-created-with-zero-balance" title="Permanent link">&para;</a></h2>
+<p>An attacker can send wei to the address of a contract before it is created.  Contracts should not assume that its initial state contains a zero balance.  See <a href="https://github.com/ConsenSys/smart-contract-best-practices/issues/61">issue 61</a> for more details.</p>
+<h2 id="remember-that-on-chain-data-is-public">Remember that on-chain data is public<a class="headerlink" href="#remember-that-on-chain-data-is-public" title="Permanent link">&para;</a></h2>
+<p>Many applications require submitted data to be private up until some point in time in order to work. Games (eg. on-chain rock-paper-scissors) and auction mechanisms (eg. sealed-bid second-price auctions) are two major categories of examples. If you are building an application where privacy is an issue, take care to avoid requiring users to publish information too early.</p>
+<p>Examples:</p>
+<ul>
+<li>In rock paper scissors, require both players to submit a hash of their intended move first, then require both players to submit their move; if the submitted move does not match the hash throw it out.</li>
+<li>In an auction, require players to submit a hash of their bid value in an initial phase (along with a deposit greater than their bid value), and then submit their action bid value in the second phase.</li>
+<li>When developing an application that depends on a random number generator, the order should always be (1) players submit moves, (2) random number generated, (3) players paid out. The method by which random numbers are generated is itself an area of active research; current best-in-class solutions include Bitcoin block headers (verified through <a href="http://btcrelay.org">http://btcrelay.org</a>), hash-commit-reveal schemes (ie. one party generates a number, publishes its hash to "commit" to the value, and then reveals the value later) and <a href="http://github.com/randao/randao">RANDAO</a>.</li>
+<li>If you are implementing a frequent batch auction, a hash-commit scheme is also desirable.</li>
+</ul>
 <h2 id="be-aware-of-the-tradeoffs-between-abstract-contracts-and-interfaces">Be aware of the tradeoffs between abstract contracts and interfaces<a class="headerlink" href="#be-aware-of-the-tradeoffs-between-abstract-contracts-and-interfaces" title="Permanent link">&para;</a></h2>
 <p>Both interfaces and abstract contracts provide one with a customizable and re-usable approach for smart contracts. Interfaces, which were introduced in Solidity 0.4.11, are similar to abstract contracts but cannot have any functions implemented. Interfaces also have limitations such as not being able to access storage or inherit from other interfaces which generally makes abstract contracts more practical. Although, Interfaces are certainly useful for designing contracts prior to implementation. Additionally, it is important to keep in mind that if a contract inherits from an abstract contract it must implement all non-implemented functions via overriding or it will be abstract as well.</p>
+<h2 id="in-2-party-or-n-party-contracts-beware-of-the-possibility-that-some-participants-may-drop-offline-and-not-return">In 2-party or N-party contracts, beware of the possibility that some participants may "drop offline" and not return<a class="headerlink" href="#in-2-party-or-n-party-contracts-beware-of-the-possibility-that-some-participants-may-drop-offline-and-not-return" title="Permanent link">&para;</a></h2>
+<p>Do not make refund or claim processes dependent on a specific party performing a particular action with no other way of getting the funds out. For example, in a rock-paper-scissors game, one common mistake is to not make a payout until both players submit their moves; however, a malicious player can "grief" the other by simply never submitting their move - in fact, if a player sees the other player's revealed move and determines that they lost, they have no reason to submit their own move at all. This issue may also arise in the context of state channel settlement. When such situations are an issue, (1) provide a way of circumventing non-participating participants, perhaps through a time limit, and (2) consider adding an additional economic incentive for participants to submit information in all of the situations in which they are supposed to do so.</p>
 <h2 id="keep-fallback-functions-simple">Keep fallback functions simple<a class="headerlink" href="#keep-fallback-functions-simple" title="Permanent link">&para;</a></h2>
 <p><a href="http://solidity.readthedocs.io/en/latest/contracts.html#fallback-function">Fallback functions</a> are called when a contract is sent a message with no arguments (or when no function matches), and only has access to 2,300 gas when called from a <code>.send()</code> or <code>.transfer()</code>. If you wish to be able to receive Ether from a <code>.send()</code> or <code>.transfer()</code>, the most you can do in a fallback function is log an event. Use a proper function if a computation or more gas is required.</p>
 <div class="highlight"><pre><span></span><span class="c1">// bad</span>
@@ -868,7 +1020,7 @@ cannot be prevented.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>Contract users (and auditors) should be aware of the full smart contract source code of any application they intend to use.</p>
+<p>Contract users (and auditors) should be aware of the full smart contract source code of any application they intend to use. </p>
 <h2 id="avoid-using-txorigin">Avoid using <code>tx.origin</code><a class="headerlink" href="#avoid-using-txorigin" title="Permanent link">&para;</a></h2>
 <p>Never use <code>tx.origin</code> for authorization, another contract can have a method which will call your contract (where the user has some funds for instance) and your contract will authorize that transaction as your address is in <code>tx.origin</code>.</p>
 <div class="highlight"><pre><span></span>pragma solidity 0.4.18;
@@ -910,7 +1062,7 @@ contract AttackingContract {
 <p>Besides the issue with authorization, there is a chance that <code>tx.origin</code> will be removed from the Ethereum protocol in the future, so code that uses <code>tx.origin</code> won't be compatible with future releases <a href="https://ethereum.stackexchange.com/questions/196/how-do-i-make-my-dapp-serenity-proof/200#200">Vitalik: 'Do NOT assume that tx.origin will continue to be usable or meaningful.'</a></p>
 <p>It's also worth mentioning that by using <code>tx.origin</code> you're limiting interoperability between contracts because the contract that uses tx.origin cannot be used by another contract as a contract can't be the <code>tx.origin</code>.</p>
 <h2 id="deprecatedhistorical-recommendations">Deprecated/historical recommendations<a class="headerlink" href="#deprecatedhistorical-recommendations" title="Permanent link">&para;</a></h2>
-<p>These are recommendations which are no longer relevant due to improvements to solidity. They are recorded here for posterity and awareness.</p>
+<p>These are recommendations which are no longer relevant due to changes in the protocol or improvements to solidity. They are recorded here for posterity and awareness. </p>
 <h3 id="beware-division-by-zero-solidity-04">Beware division by zero (Solidity &lt; 0.4)<a class="headerlink" href="#beware-division-by-zero-solidity-04" title="Permanent link">&para;</a></h3>
 <p>Prior to version 0.4, Solidity <a href="https://github.com/ethereum/solidity/issues/670">returns zero</a> and does not <code>throw</code> an exception when a number is divided by zero. Ensure you're running at least version 0.4.</p>
                 
@@ -931,7 +1083,7 @@ contract AttackingContract {
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../protocol_recommendations/" title="Recommendations for Smart Contract Logic" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../general_philosophy/" title="General Philosophy" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -940,19 +1092,19 @@ contract AttackingContract {
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Recommendations for Smart Contract Logic
+                General Philosophy
               </span>
             </div>
           </a>
         
         
-          <a href="../protocol_attacks/" title="Protocol Attacks" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../known_attacks/" title="Known Attacks" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Protocol Attacks
+                Known Attacks
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
